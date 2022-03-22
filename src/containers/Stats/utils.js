@@ -13,7 +13,7 @@ export const getTrendsData = (data) => {
 
     const tempMap = new Map();
 
-    allKeys.map(key => {
+    allKeys.forEach(key => {
         const date = new Date(key);
         const name = `${monthNames[date.getMonth()]} ${date.getFullYear().toString().slice(2)}`;
         const c = cases[key];
