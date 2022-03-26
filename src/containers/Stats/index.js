@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text } from "@chakra-ui/react";
+import { Box, Text, Flex } from "@chakra-ui/react";
 import _capitalize from "lodash/capitalize";
 
 // Components
 import TrendChart from "../../components/TrendChart";
+import BarChart from "../../components/BarChart";
+import Footer from "../../components/Footer"
 
 // Constants
 import { labelMapping } from "./constants";
 
 // Utils
 import { formatNumber } from "../../utils/common";
-import { getTotalStats, getTodayStats, getTrendsData } from "./utils";
+import { getTotalStats, getTodayStats, getTrendsData, getStatsByCountriesData } from "./utils";
 
 // Services
-import { getStatistics, getTrends } from "../../services/covid";
-
-// Hooks
-import useWindowDimensions from "../../hooks/useDimensions";
+import { getStatistics, getStatsByCountries, getTrends } from "../../services/covid";
 
 const Stats = () => {
-  const windowDimensions = useWindowDimensions();
   const [data, setData] = useState();
 
   useEffect(() => {
     (async function fetchData() {
-      const [stats, trends] = await Promise.all([getStatistics(), getTrends()]);
-      setData({ stats, trends });
+      const [stats, trends, statsByCountries] = await Promise.all([getStatistics(), getTrends(), getStatsByCountries()]);
+      setData({ stats, trends, statsByCountries });
     })();
   }, []);
 
@@ -37,9 +35,10 @@ const Stats = () => {
   const todayStats = getTodayStats(data.stats);
 
   const trendsData = getTrendsData(data.trends);
+  const statsByCountries = getStatsByCountriesData(data.statsByCountries);
 
   return (
-    <Box padding="1rem">
+    <Box>
       <Box textAlign="center">
         <Text fontWeight="500" fontSize="18px">
           Total Statistics
@@ -103,9 +102,18 @@ const Stats = () => {
           Overall Trends
         </Text>
       </Box>
-      <Box display="flex" justifyContent="center" marginTop="2rem">
-        <TrendChart data={trendsData} width={windowDimensions.width} />
+      <Flex marginTop="2rem" p="1rem" justifyContent="center" width="100%" height="500px">
+        <TrendChart data={trendsData} />
+      </Flex>
+      <Box textAlign="center" marginTop="2rem">
+        <Text fontWeight="600" fontSize="18px">
+          Cases by Countries (Top 20)
+        </Text>
       </Box>
+      <Flex marginTop="2rem" p="1rem" justifyContent="center" width="100%" height="500px">
+        <BarChart data={statsByCountries} />
+      </Flex>
+      <Footer/>
     </Box>
   );
 };
