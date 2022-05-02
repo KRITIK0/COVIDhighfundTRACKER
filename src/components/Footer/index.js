@@ -28,7 +28,7 @@ const index = () => {
             <Text><Link href="https://www.covid19india.org/" target="_blank">https://www.covid19india.org/</Link></Text>
           </ListItem>
           <ListItem>
-            <Text><Link href="https://covid19.mathdro.id/api"  target="_blank">https://covid19.mathdro.id/api</Link></Text>
+            <Text><Link href="https://disease.sh/"  target="_blank">https://disease.sh/</Link></Text>
           </ListItem>
         </List>
       </Box>
