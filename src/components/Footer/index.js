@@ -25,7 +25,7 @@ const index = () => {
         <Text fontSize="20px" fontWeight="500" mb="1rem">Reference</Text>
         <List>
           <ListItem>
-            <Text><Link href="https://www.covid19india.org/" target="_blank">covid19india.org</Link></Text>
+            <Text><Link href="https://coronaclusters.in/" target="_blank">https://coronaclusters.in/</Link></Text>
           </ListItem>
           <ListItem>
             <Text><Link href="https://disease.sh/"  target="_blank">disease.sh</Link></Text>
