@@ -32,6 +32,14 @@ const index = () => {
           </ListItem>
         </List>
       </Box>
+     <Box p="1rem">
+        <Text fontSize="20px" fontWeight="500" mb="1rem">Information about vaccination and other covid-19 news</Text>
+        <List>
+          <ListItem>
+            <Text><Link href="https://www.mygov.in/covid-19" target="_blank">https://www.mygov.in/covid-19</Link></Text>
+          </ListItem>
+        </List>
+      </Box>
     </Flex>
   );
 };
